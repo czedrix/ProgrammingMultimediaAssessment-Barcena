@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Order Form</title>
+    <style>
+        body {font-family: "Times New Roman", Georgia, Serif;}
+        h1, h2, h3, h4, h5, h6 {
+          font-family: "Playfair Display";
+          letter-spacing: 5px;
+        }
+        </style>
+</head>
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+          <a href="index.html" class="w3-bar-item w3-button">Mangan da Kita</a>
+          <!-- Right-sided navbar links. Hide them on small screens -->
+          <div class="w3-right w3-hide-small">
+            <a href="#menu" class="w3-bar-item w3-button">Menu</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contact Information</a>
+            <a href="order.html" class="w3-bar-item w3-button">Order</a>
+            <a href="#contact" class="w3-bar-item w3-button">Technology Stack Page</a>
+          </div>
+        </div>
+    </div>
+
+    <div class="w3-content" style="max-width:1100px;">
+        <img src="Assets/Banner.png" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="1024" height="300">
+    </div>
+
+    <h1>Order Form</h1>
+    
+    <input type="date" class="form-control mb-3" id="dateInput" placeholder="Date">
+    <input type="text" class="form-control mb-3" id="cNameInput" placeholder="Customer Name">
+    <h2>Order Type</h2>
+    <p>(Please choose one of the options):</p>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Delivery" id="orderTypeInput">
+      <label class="form-check-label" for="orderTypeInput">
+        Delivery
+      </label>
+      <input type="text" class="form-control mb-3" id="AdrsInput" placeholder="Customer Address">
+      <input class="form-check-input" type="checkbox" value="Pick-up" id="orderTypeInput">
+      <label class="form-check-label" for="orderTypeInput">
+        Pick-up
+      </label>
+    </div>
+
+  </br>
+
+    <label for="validationDefault04" class="form-label">Food</label>
+            <select class="form-select" id="Order1" required>
+                <option selected disabled value="">Choose your food</option>
+                <option value ="Adobo">Adobo</option>
+                <option value = "Lechon">Lechon</option>
+                <option value = "Crispy Pata">Crispy Pata</option>
+                <option value = "Chicken Inasal">Chicken Inasal</option>
+            </select>
+    <input type="number" class="form-control mb-3" id="Quantity1" placeholder="Quantity">
+    <button type="button" class="btn btn-danger" id="place-order">Order</button>
+
+    <h2>Menu Orders</h2>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+         <td>Food</td>
+         <td>Price</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Adobo</td>
+          <td>25</td>
+        </tr>
+        <tr>
+          <td>Lechon</td>
+          <td>100</td> 
+        </tr>
+        <tr>
+          <td>Crispy Pata</td>
+          <td>80</td>
+        </tr>
+        <tr>
+          <td>Chicken Inasal</td>
+          <td>30</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyApiNB8gbsIB9Y_XJX_J81d98OVV7k4OT4",
+    authDomain: "project-cda65.firebaseapp.com",
+    databaseURL: "https://project-cda65-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "project-cda65",
+    storageBucket: "project-cda65.appspot.com",
+    messagingSenderId: "321671300086",
+    appId: "1:321671300086:web:b685fb3e3f1ac142ecbdd7"
+  };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+
+      const db = getDatabase();
+
+
+
+      //==========
+
+          const date = document.getElementById('dateInput');
+          const orderType = document.getElementById('orderTypeInput');
+          const customerName = document.getElementById('cNameInput');
+          const address = document.getElementById('AdrsInput');
+          
+           const o1 = document.getElementById('Order1');
+           const q1 = document.getElementById('Quantity1');
+           const placeorder = document.getElementById('place-order');
+
+      
+      //==============VALIDATION ================= 
+      function Empty(str) {
+        return str === null || str.match(/^ *$/) !== null;
+      }
+      
+      function Validation(){
+        if (
+          Empty(date.value) ||
+          Empty(orderType.value) ||
+          Empty(customerName.value) ||
+          Empty(address.value) ||
+          Empty(o1.value) ||
+          Empty(q1.value)
+        ) {
+          alert("Fill In All Fields");
+          return false;
+        }
+        return true;
+      }
+
+      //==============ADD NEW ORDER ================= 
+      function InsertData(){
+        if (!Validation()){
+          return;
+        }
+        set(ref(db, "NewOrders/"+ customerName.value),{
+            Date: date.value,
+            // OrderNo: order.value,
+            OrderType: orderType.value,
+            CustomersName: customerName.value,
+            CustomerAddress: address.value,
+            Order1 : o1.value,
+            Quantity1 : q1.value,
+        })
+
+        .then(()=>{
+            alert("Placed Order Successfully");
+        })
+        .catch((error)=>{
+            alert("error"+ error);
+        })
+    }
+       
+      //===========VALIDATE=============================
+        
+      
+
+        
+      // ========== PLACE ORDER =========================
+
+        placeorder.addEventListener('click', InsertData);
+
+
+    </script>
+</body>
+</html>
